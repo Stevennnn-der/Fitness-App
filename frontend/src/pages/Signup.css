@@ -1,0 +1,87 @@
+.sign .background_image {
+  background-image: url('/Users/zhuhao/Desktop/Projects/Fitness-App/frontend/assets/login_background.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.sign .auth-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign .auth-form-container {
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  width: 350px;
+  background-color: #fed8aa;
+  border-radius: 1rem;
+  box-shadow: 7px 5px 0px #c19875;
+  padding: 60px 40px;
+}
+
+.sign .auth-form-container > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign .auth-form-container span {
+  color: red;
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+.sign .auth-title {
+  margin-bottom: 40px;
+  font-size: 33px;
+}
+
+.sign .auth-text {
+  font-size: 18px;
+  margin: 10px 0px;
+}
+
+.sign .auth-submit-btn {
+  width: 100%;
+  margin-top: 35px;
+  margin-bottom: 20px;
+  background-color: #b64a00;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.sign .auth-submit-btn:hover {
+  background-color: #fb7316;
+  transform: scale(1);
+}
+
+.sign .auth-submit-btn:active {
+  transform: scale(0.95);
+}
+
+.sign .auth-form-container input {
+  border: none;
+  height: 33px;
+  border-radius: 1rem;
+  padding: 0px 15px;
+}
+
+.sign .login {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.sign .login .link:visited {
+  color: #5666f9;
+  font-weight: 600;
+}

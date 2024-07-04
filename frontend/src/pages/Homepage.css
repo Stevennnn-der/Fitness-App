@@ -1,0 +1,188 @@
+/* Large phones (portrait) and small tablets (portrait) */
+@media (min-width: 768px) and (max-width: 1023px) and (min-height: 668px) and (max-height: 812px) {
+  /* hr:nth-of-type(2) {
+    bottom: 9%;
+  } */
+}
+
+/* Tablets (landscape) */
+@media (min-width: 1024px) and (max-width: 1280px) and (min-height: 801px) and (max-height: 1024px) {
+  /* hr:nth-of-type(2) {
+    bottom: 9%;
+  } */
+}
+
+.homepage {
+  background-color: #f0f3f8;
+  display: flex;
+}
+
+.left-menu-bar {
+  background-color: rgb(245, 245, 245);
+  height: 100vh;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fitness-home-icon {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.fitness-home-icon h2 {
+  margin-right: 18px;
+  color: #fb7316;
+}
+
+.fitness-home-icon h2,
+.fitness-home-icon i {
+  display: inline-block;
+}
+
+.left-menu-bar hr:first-of-type {
+  width: 80%;
+  border: none; /* Remove default border */
+  border-top: 2px solid #ccc; /* Custom border style */
+  opacity: 0.7;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.menu-options {
+  height: 590px;
+}
+
+.menu-options > ul {
+  list-style: none;
+}
+
+.menu-options > ul li {
+  margin: 20px;
+  padding-left: 10px;
+}
+
+.menu-options .fa-solid{
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+}
+
+.menu-options > ul li button {
+  border: none;
+  width: 180px;
+  height: 40px;
+  border-radius: 1em;
+  padding-left: 10px;
+  background-color: rgb(245, 245, 245);
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.menu-options > ul li button.active {
+  background-color: #FB7316;
+  color: white;
+  transform: translateY(-2px);
+}
+
+hr:nth-of-type(2) {
+
+  width: 180px;
+  border: none; /* Remove default border */
+  border-top: 2px solid #ccc; /* Custom border style */
+  opacity: 0.7;
+  border-radius: 5px; /* Rounded corners */
+}
+
+.loggout {
+  position: inherit;
+
+  display: flex;
+  justify-content: flex-start;
+  width: 235px;
+  padding: 18px 33px;
+  
+}
+
+.loggout p {
+  margin-left: 18px;
+}
+
+.loggout button {
+  border: none;
+  width: 90px;
+  height: 15px;
+  border-radius: 1em;
+  background-color: rgb(245, 245, 245);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.right-menu {
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  height: 89px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.greeting {
+  flex: 1;
+  padding: 25px 35px;
+}
+
+.navbar p {
+  color: #9d9fa4;
+  font-size: 10px;
+}
+
+.navbar h2 {
+  color: #63738B;
+  font-size: 16px;
+ 
+}
+
+.search-bar {
+  flex: 3;
+  padding-top: 30px;
+}
+
+.search-icon {
+  position: relative;
+  left: 25px; /* Adjust the position as needed */
+  top: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.search-bar input {
+  color: #7688a1;
+  background-color: #d6dae2;
+  width: 85%;
+  height: 33px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 35px;
+}
+
+.info-btns {
+  flex: 0.7;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+.info-btns ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.info-btns ul li {
+  cursor: pointer;
+}

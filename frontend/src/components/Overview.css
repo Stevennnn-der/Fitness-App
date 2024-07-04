@@ -1,0 +1,21 @@
+.info-page {
+  display: grid;
+  grid-template-rows: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 70%;
+  gap: 20px;
+  padding: 20px 40px;
+  padding-bottom: 0;
+}
+
+.suggestions {
+  grid-column: span 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.goal-process {
+  grid-column: span 3;
+}

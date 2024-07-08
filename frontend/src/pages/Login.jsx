@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./Login.css";
 
 const Login = () => {
@@ -32,9 +33,8 @@ const Login = () => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+      const data = await response.json();
       if (!response.ok) {
-        const data = await response.json();
         if (data.message.includes("Password is NOT valid!")) {
           validationErrors.password = data.message;
           setErrors({ ...validationErrors });
@@ -44,7 +44,16 @@ const Login = () => {
         }
         return;
       }
-      navigate('/homepage');
+
+      localStorage.setItem("accessToken", data.accessToken);
+      navigate("/homepage", {
+        state: {
+          email: data.email, 
+          username: data.username,
+          userId: data._id,
+        },
+      });
+      
     } catch (err) {
       console.log("Error: " + err.message);
     }

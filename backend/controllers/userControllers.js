@@ -64,7 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
         user: {
           username: user.username,
           email: user.email,
-          id: user.id,
+          _id: user._id,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
@@ -76,8 +76,18 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-const currentUser = () => {
-  res.status(200).json({ message: "Login User!" });
-};
+const currentUser = asyncHandler(async (req, res) => {
+  console.log("ID ", req.user._id);
+  const user = await User.findById(req.user._id);
+  if (user) {
+    res.json({
+      username: user.username,
+      email: user.email,
+    });
+  } else {
+    console.log("hiiiiiiiiii");
+    res.status(404).json({ message: "user not founnd"});
+  }
+});
 
 module.exports = { registerUser, loginUser, updateUser, currentUser };

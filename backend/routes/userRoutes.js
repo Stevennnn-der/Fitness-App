@@ -8,7 +8,7 @@ router.post('/signup', registerUser);
 
 router.post('/login', loginUser);
 
-router.get('/current', validateToken, currentUser);
+router.get('/homepage', validateToken, currentUser);
 
 //router.post('/homepage/user:id', loginUser);
 

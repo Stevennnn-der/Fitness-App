@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./Homepage.css";
 import { Link } from "react-router-dom";
 import Overview from "../components/Overview";
@@ -20,6 +21,7 @@ const navbar_icon = [
 const Homepage = () => {
   const [left_menu, setLeftMenu] = useState("Overview");
   const [selectedPage, setSelectPage] = useState(<Overview />);
+  const [username, setUsername] = useState(null);
 
   const updateMenu = (menu) => {
     setLeftMenu(menu);
@@ -41,8 +43,35 @@ const Homepage = () => {
     <li>
       <i className={`fa-solid ${item.name}`} style={{ fontSize: "24px" }}></i>
     </li>
-    
   ));
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('accessToken');
+        console.log("HOMEPAGE TOKEN: ", token);
+        if (token) {
+          const response = await axios.get("http://localhost:5001/homepage", {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          // console.log("Response Username ", response);
+          setUsername(response.data.username);
+        } else {
+          console.error('No token found')
+        }
+      } catch (error) {
+        console.error("There was an error fetching the data!", error);
+      }
+    };
+
+    fetchUser();
+
+    return () => {
+      console.log('Cleanup runs');
+    };
+  }, []);
 
   return (
     <div className="homepage">
@@ -73,16 +102,14 @@ const Homepage = () => {
         <div className="navbar">
           <div className="greeting">
             <p>Good Morning</p>
-            <h2>Welcome, Der!</h2>
+            <h2>Welcome, {username}!</h2>
           </div>
           <div className="search-bar">
             <i className="fa-solid fa-magnifying-glass search-icon"></i>
             <input type="text" placeholder="Search..." />
           </div>
           <div className="info-btns">
-            <ul>
-            { navbarComponent }
-            </ul>
+            <ul>{navbarComponent}</ul>
           </div>
           <hr />
         </div>

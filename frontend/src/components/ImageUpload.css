@@ -1,0 +1,23 @@
+.image-icon{
+    width: 9em;
+    height: 9em;
+    /* background-color: #11BBD7; */
+    margin-top: 3em;
+    margin-bottom: 1em;
+}
+
+.avatar {
+    width: 9em;
+    height: 9em;
+    border-radius: 50%;
+    object-fit: cover;
+    
+}
+
+.fa-camera {
+    position: relative;
+    bottom: 1em;
+    left: 4.5em;
+    font-size: 1.7em; 
+    cursor: pointer;
+}

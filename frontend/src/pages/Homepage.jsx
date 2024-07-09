@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Overview from "../components/Overview";
 import Goals from "../components/Goals/Goals";
 import Diet from "../components/Diet";
+import User from "../pages/User";
 
 const components = [
   { name: "Overview", icon: "fa-vector-square" },
@@ -13,9 +14,9 @@ const components = [
 ];
 
 const navbar_icon = [
-  { name: "fa-bell" },
-  { name: "fa-gear" },
-  { name: "fa-user" },
+  { name: "fa-bell", link: "/homepage/notification" },
+  { name: "fa-gear", link: "/homepage/setting" },
+  { name: "fa-user", link: "/homepage/user" },
 ];
 
 const Homepage = () => {
@@ -41,7 +42,9 @@ const Homepage = () => {
 
   const navbarComponent = navbar_icon.map((item) => (
     <li>
-      <i className={`fa-solid ${item.name}`} style={{ fontSize: "24px" }}></i>
+      <Link to={`${item.link}`} style={{ color: "black" }}>
+        <i className={`fa-solid ${item.name}`} style={{ fontSize: "24px" }} />
+      </Link>
     </li>
   ));
 

@@ -23,6 +23,7 @@ const Homepage = () => {
   const [left_menu, setLeftMenu] = useState("Overview");
   const [selectedPage, setSelectPage] = useState(<Overview />);
   const [username, setUsername] = useState(null);
+  
 
   const updateMenu = (menu) => {
     setLeftMenu(menu);
@@ -52,7 +53,7 @@ const Homepage = () => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('accessToken');
-        console.log("HOMEPAGE TOKEN: ", token);
+        // console.log("HOMEPAGE TOKEN: ", token);
         if (token) {
           const response = await axios.get("http://localhost:5001/homepage", {
             headers: {

@@ -39,10 +39,22 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const updateUser = asyncHandler(async (req, res) => {
-  const updateUser = User.findOneAndUpdate(req.params.id, req.body, {
+  
+
+  const { id, firstName, lastName, phoneNumber, gender, address } = req.body;
+  if (!id) {
+    return res.status(400).send({ error: 'User ID is required' });
+  }
+  const updateData = { firstName, lastName, phoneNumber, gender, address };
+
+  const updatedUser = await User.findOneAndUpdate({ _id: id }, updateData, {
     new: true,
   });
-  res.send(updateUser);
+  console.log("I SEND THE DATA!")
+  if (!updatedUser) {
+    return res.status(404).send({ error: 'User not found' });
+  }
+  res.send(updatedUser);
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -68,7 +80,7 @@ const loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "15m" }
+      { expiresIn: "60m" }
     );
     res.status(200).json({ accessToken });
   } else {
@@ -80,10 +92,7 @@ const currentUser = asyncHandler(async (req, res) => {
   console.log("ID ", req.user._id);
   const user = await User.findById(req.user._id);
   if (user) {
-    res.json({
-      username: user.username,
-      email: user.email,
-    });
+    res.json(user);
   } else {
     console.log("hiiiiiiiiii");
     res.status(404).json({ message: "user not founnd"});

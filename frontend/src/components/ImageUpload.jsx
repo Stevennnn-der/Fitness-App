@@ -36,7 +36,7 @@ const ImageUpload = () => {
       <img src={avatarURL} alt="Avatar" className="avatar" />
       <form id="form" encType="multipart/form-data">
         <i className="fa-solid fa-camera" onClick={handleImageUpload} />
-        <input type="file" id="file" ref={fileUploadRef} draggable="false" onCHange={uploadImageDisplay} hidden />
+        <input type="file" id="file" ref={fileUploadRef} draggable="false" onChange={uploadImageDisplay} hidden />
       </form>
     </div>
   );

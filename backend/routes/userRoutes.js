@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerUser, loginUser, currentUser } = require('../controllers/userControllers');
+const { registerUser, loginUser, currentUser, userInfo, updateUser } = require('../controllers/userControllers');
 const validateToken = require('../middleware/validTokenHandler');
 
 const router = express.Router();
@@ -10,6 +10,6 @@ router.post('/login', loginUser);
 
 router.get('/homepage', validateToken, currentUser);
 
-//router.post('/homepage/user:id', loginUser);
+router.put('/homepage/user', updateUser);
 
 module.exports = router;

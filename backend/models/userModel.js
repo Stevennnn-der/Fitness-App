@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
+  avatar: {
+    type: String,
+    default: '/static/media/default-avatar-image.b0cd019b50700d3cbaa3.jpeg',
+  },
+
   email: {
     type: String,
     required: [true, "Please Add the Email!"],
@@ -40,6 +45,8 @@ const userSchema = mongoose.Schema({
     type: String,
     require: [true, "Please Add the Gender"],
   },
+
+  
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 db();
 
 app.use("/", require("./routes/userRoutes"));
+app.use(express.static('assets'));
+
 app.use(errorHandler);
 
 app.listen(port, () => {

@@ -126,6 +126,10 @@
   background-color: #d3f5fd;
 }
 
+.disabled:hover {
+  background-color: #D7DAE1;
+}
+
 .save-btn > p {
   font-size: 16px;
 }

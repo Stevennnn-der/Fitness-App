@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 
+
 const registerUser = asyncHandler(async (req, res) => {
   const { email, username, password } = req.body;
 
@@ -39,8 +40,6 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 const updateUser = asyncHandler(async (req, res) => {
-  
-
   const { id, firstName, lastName, phoneNumber, gender, address } = req.body;
   if (!id) {
     return res.status(400).send({ error: 'User ID is required' });
@@ -55,6 +54,31 @@ const updateUser = asyncHandler(async (req, res) => {
     return res.status(404).send({ error: 'User not found' });
   }
   res.send(updatedUser);
+});
+
+const uploadAvatar = asyncHandler(async (req, res) => {
+  console.log(req.file);
+  try {
+    const userId = req.body.user_id;
+    const file = req.file;
+
+    if (!file) {
+      return res.status(400).send({ message: "Please upload a file." });
+    }
+
+    const user = await User.findById(userId);
+
+    user.avatar = `/${file.filename}`;
+    await user.save();
+
+    res.status(200).send({
+      message: "Avatar updated successfully!",
+      location: user.avatar
+    });
+  } catch (error) {
+    console.error("Error on Updating Avatar", error);
+    res.status(500).send({ message: "Error on updating Avatar!", error})
+  }
 });
 
 const loginUser = asyncHandler(async (req, res) => {
@@ -99,4 +123,4 @@ const currentUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, loginUser, updateUser, currentUser };
+module.exports = { registerUser, loginUser, updateUser, currentUser, uploadAvatar };

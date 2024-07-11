@@ -20,6 +20,7 @@ const navbar_icon = [
 ];
 
 const Homepage = () => {
+  const [id, setId] = useState("");
   const [left_menu, setLeftMenu] = useState("Overview");
   const [selectedPage, setSelectPage] = useState(<Overview />);
   const [username, setUsername] = useState(null);
@@ -53,7 +54,6 @@ const Homepage = () => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('accessToken');
-        // console.log("HOMEPAGE TOKEN: ", token);
         if (token) {
           const response = await axios.get("http://localhost:5001/homepage", {
             headers: {
@@ -61,6 +61,7 @@ const Homepage = () => {
             }
           });
           // console.log("Response Username ", response);
+          setId(response.data._id);
           setUsername(response.data.username);
         } else {
           console.error('No token found')
@@ -114,6 +115,7 @@ const Homepage = () => {
           </div>
           <div className="info-btns">
             <ul>{navbarComponent}</ul>
+
           </div>
           <hr />
         </div>

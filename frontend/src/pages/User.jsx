@@ -16,6 +16,7 @@ const User = () => {
   const [canEdit, setCanEdit] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -35,6 +36,7 @@ const User = () => {
           });
           // console.log("Response Username ", response);
           setId(response.data._id);
+          setAvatar(response.data.avatar);
           setUsername(response.data.username);
           setEmail(response.data.email);
           setFirstName(response.data.firstName);
@@ -95,7 +97,7 @@ const User = () => {
       </div>
       <div className="middle-section">
         <div className="left-section">
-          <ImageUpload />
+          <ImageUpload user_id={id} user_avatar={avatar}/>
           <p className="username">{username}</p>
           <p className="email">{email}</p>
           <button onClick={canEditProfile}>Edit Profile</button>

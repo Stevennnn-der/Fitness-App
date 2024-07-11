@@ -3,7 +3,7 @@ import './Goals.css'
 
 const Goals = () => {
   return (
-    <div>Goals</div>
+    <div>Set Your GOALS!!!</div>
   )
 }
 

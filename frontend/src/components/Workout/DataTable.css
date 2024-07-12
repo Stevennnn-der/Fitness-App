@@ -1,0 +1,40 @@
+.workout-table {
+  border-collapse: collapse;
+  border-style: hidden;
+}
+
+.workout-table td,
+.workout-table th {
+  border: 1px solid #ccc; /* Regular border color */
+  padding: 8px;
+  text-align: center;
+}
+
+.workout-table tr:first-child th,
+.workout-table tr:first-child td {
+  border-bottom: 1.5px solid #004352;
+  font-weight: bold;
+}
+
+.workout-table tr > td:first-child,
+.workout-table tr> th:first-child {
+  border-right: 1.5px solid #004352;
+  font-weight: bold;
+}
+
+.input-box {
+  outline: none;
+  width: 15em;
+  border: none;
+  text-align: center;
+}
+
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add p {
+  font-size: 10px;
+}

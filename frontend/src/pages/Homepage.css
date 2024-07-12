@@ -13,13 +13,15 @@
 }
 
 .homepage {
+  height: 100vh;
   background-color: #f0f3f8;
   display: flex;
+  overflow-y: hidden;
 }
 
 .left-menu-bar {
   background-color: rgb(245, 245, 245);
-  height: 100vh;
+  /* height: 100vh; */
   width: 240px;
   display: flex;
   flex-direction: column;
@@ -88,6 +90,10 @@
   transform: translateY(-2px);
 }
 
+.menu {
+  height: 80%;
+}
+
 hr:nth-of-type(2) {
 
   width: 180px;
@@ -122,6 +128,7 @@ hr:nth-of-type(2) {
 }
 
 .right-menu {
+  height: 100%;
   width: 100%;
 }
 

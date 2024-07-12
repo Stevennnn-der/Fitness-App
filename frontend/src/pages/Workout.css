@@ -1,0 +1,61 @@
+.workout {
+  display: flex;
+  flex-direction: column;
+  background-color: #fbffff;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start; 
+  width: 100%;
+  padding: 1.5em;
+  padding-bottom: 0;
+}
+
+.header .header-title {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#header-h2 {
+  color: #0792B1;
+}
+
+#go-to-info {
+  position: relative;
+  top: -0.2em;
+}
+
+.middle-section {
+  margin-top: -1em;
+
+}
+
+.rs-calendar-table-cell {
+  padding: 2px;
+  font-size: 12px;
+}
+
+.rs-calendar-table-cell-content {
+   width: 30px;
+   height: 30px;
+}
+
+#root > div > div.middle-section > div > div.rs-calendar-header.rs-calendar-header-has-month > button {
+  background-color: #11BBD7;
+  color: #F0F3F8;
+}
+
+#root > div > div.middle-section > div > div.rs-calendar-header.rs-calendar-header-has-month > button:hover {
+  background-color: #8be4f1;
+}
+
+#root > div > div.middle-section > div > div.rs-calendar-header.rs-calendar-header-has-month > div > button.rs-calendar-header-title.rs-calendar-header-title-date.rs-btn.rs-btn-subtle.rs-btn-sm {
+  background-color: #11BBD7;
+  color: #F0F3F8;
+}
+
+#root > div > div.middle-section > div > div.rs-calendar-header.rs-calendar-header-has-month > div > button.rs-calendar-header-title.rs-calendar-header-title-date.rs-btn.rs-btn-subtle.rs-btn-sm:hover {
+  background-color: #8be4f1;
+}

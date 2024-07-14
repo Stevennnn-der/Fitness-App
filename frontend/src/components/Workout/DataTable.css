@@ -1,6 +1,14 @@
+.workout-table-container {
+  max-width: 56em; /* Adjust this value to suit your layout */
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-bottom: 2em;
+  color: #004352;
+}
+
 .workout-table {
+  width: 100%;
   border-collapse: collapse;
-  border-style: hidden;
 }
 
 .workout-table td,
@@ -8,6 +16,7 @@
   border: 1px solid #ccc; /* Regular border color */
   padding: 8px;
   text-align: center;
+
 }
 
 .workout-table tr:first-child th,
@@ -27,14 +36,48 @@
   width: 15em;
   border: none;
   text-align: center;
+  padding: 0 1em;
 }
 
 .add {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;  
 }
 
-.add p {
+.add-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-container p {
   font-size: 10px;
+}
+
+
+
+/* Styles the scrollbar track */
+.workout-table-container::-webkit-scrollbar-track {
+  background-color: #edf7f9; /* Light grey background for the track */
+  border-radius: 10px; /* Optional: Rounds the corners of the track */
+}
+
+/* Styles the scrollbar thumb */
+.workout-table-container::-webkit-scrollbar-thumb {
+  background-color: #4a6167; /* Darker grey for the thumb */
+  border-radius: 10px; /* Rounded corners on the thumb */
+  border: 2px solid #f0f0f0; /* Optional: Adds a border around the thumb */
+}
+
+/* Styles the scrollbar itself (width and height) */
+.workout-table-container::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+  height: 11px; /* Height of the horizontal scrollbar */
+}
+
+/* Optional: style the scrollbar buttons (arrows at the ends of the scrollbar) */
+.workout-table-container::-webkit-scrollbar-button {
+  display: none; /* Often it's best to hide these for a cleaner look */
 }

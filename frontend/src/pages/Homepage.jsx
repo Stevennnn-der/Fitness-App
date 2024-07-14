@@ -5,19 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import Overview from "../components/Overview";
 import Goals from "../components/Goals/Goals";
 import Diet from "../components/Diet";
-import User from "../pages/User";
-import Workout from "./Workout";
 import Steps from "../components/Steps/Steps";
 import Calories from "../components/Calories/Calories";
 import Suggestion from "../components/Suggestion/Suggestion";
-
-
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 
 const components = [
   { name: "Overview", icon: "fa-vector-square" },
   { name: "Goals", icon: "fa-bullseye" },
   { name: "Diet Plan", icon: "fa-cookie-bite" },
-  { name: "Workout", icon: "fa-dumbbell"},
+  { name: "Workout", icon: "fa-dumbbell" },
 ];
 
 const navbar_icon = [
@@ -32,6 +30,7 @@ const Homepage = () => {
   const [selectedPage, setSelectPage] = useState();
   const [username, setUsername] = useState(null);
   const navigate = useNavigate();
+  const [hour, setHour] = useState(new Date().getHours());
 
   const updateMenu = (menu) => {
     setLeftMenu(menu);
@@ -43,28 +42,34 @@ const Homepage = () => {
       setOnOverview(true);
       setSelectPage(<Overview setSelectPage={setLeftMenu} />);
     } else if (left_menu === "Goals") {
-      setOnOverview(false)
+      setOnOverview(false);
       setSelectPage(<Goals />);
     } else if (left_menu === "Diet Plan") {
-      setOnOverview(false)
+      setOnOverview(false);
       setSelectPage(<Diet />);
     } else if (left_menu === "Suggestion") {
-      setOnOverview(true)
+      setOnOverview(true);
       setSelectPage(<Suggestion />);
     } else if (left_menu === "Workout") {
-      navigate('/homepage/workout');
+      navigate("/homepage/workout");
     } else if (left_menu === "Calories") {
-      setOnOverview(true)
+      setOnOverview(true);
       setSelectPage(<Calories />);
     } else if (left_menu === "Steps") {
-      setOnOverview(true)
+      setOnOverview(true);
       setSelectPage(<Steps />);
-    } 
+    }
   }
 
   const leftMenuComponent = components.map((item) => (
     <li onClick={() => updateMenu(item.name)}>
-      <button className={`${left_menu === item.name || (item.name === 'Overview' && onOverview) ? "active" : ""}`}>
+      <button
+        className={`${
+          left_menu === item.name || (item.name === "Overview" && onOverview)
+            ? "active"
+            : ""
+        }`}
+      >
         <i className={`fa-solid ${item.icon}`}></i>
         {item.name}
       </button>
@@ -78,6 +83,10 @@ const Homepage = () => {
       </Link>
     </li>
   ));
+
+  const loggoutUser = () => {
+    navigate("/logout");
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -100,8 +109,14 @@ const Homepage = () => {
       }
     };
 
+    const timer = setInterval(() => {
+      setHour(new Date().getHours());
+    }, 1000 * 60 * 60); // Update the hour every hour
+    console.log(hour);
+    // Cleanup the interval on component unmount
     fetchUser();
     navigateMenu();
+    return () => clearInterval(timer);
   }, [left_menu]);
 
   return (
@@ -109,9 +124,8 @@ const Homepage = () => {
       <div className="left-menu-bar">
         <div className="fitness-home-icon">
           <h2>Fitness</h2>
-          <i
-            className="fa-solid fa-dumbbell"
-            style={{ color: "#fb7316", fontSize: "1.5rem" }}
+          <FitnessCenterIcon
+            style={{ color: "#fb7316", fontSize: "1.9em" }}
           />
         </div>
         <hr />
@@ -120,19 +134,25 @@ const Homepage = () => {
         </div>
         <hr />
         <div className="loggout">
-          <Link style={{ textDecoration: "none" }} to="/loggout">
-            <i
+          {/* <i
               className="fa-solid fa-angles-left"
               style={{ textDecoration: "none" }}
-            />
-            <button>Loggout</button>{" "}
-          </Link>
+            /> */}
+          <ExitToAppIcon onClick={loggoutUser} style={{ cursor: "pointer" }} />
+          <button onClick={loggoutUser}>Logout</button>
         </div>
       </div>
       <div className="right-menu">
         <div className="navbar">
           <div className="greeting">
-            <p>Good Morning</p>
+            <p>
+              Good{" "}
+              {hour >= 5 && hour < 12
+                ? "Morning"
+                : hour >= 12 && hour < 20
+                ? "Afternoon"
+                : "Evening"}
+            </p>
             <h2>Welcome, {username}!</h2>
           </div>
           <div className="search-bar">

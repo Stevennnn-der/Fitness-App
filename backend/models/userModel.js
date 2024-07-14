@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const workoutSchema = require("./workoutTableModel");
 
 const userSchema = mongoose.Schema({
   avatar: {
@@ -23,30 +24,30 @@ const userSchema = mongoose.Schema({
 
   firstName: {
     type: String,
-    require: [true, "Please Add the First Name"],
+    required: [true, "Please Add the First Name"],
   },
 
   lastName: {
     type: String,
-    require: [true, "Please Add the Last Name"],
+    required: [true, "Please Add the Last Name"],
   },
 
   phoneNumber: {
     type: String,
-    require: [true, "Please Add the Phone Number"],
+    required: [true, "Please Add the Phone Number"],
   },
 
   address: {
     type: String,
-    require: [true, "Please Add the Address"],
+    required: [true, "Please Add the Address"],
   }, 
 
   gender: {
     type: String,
-    require: [true, "Please Add the Gender"],
+    required: [true, "Please Add the Gender"],
   },
 
-  
+  dataTables: [workoutSchema]
 });
 
 module.exports = mongoose.model("User", userSchema);

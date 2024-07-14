@@ -1,0 +1,76 @@
+.logout {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logout-header {
+  height: 55%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  background: linear-gradient(to bottom, #702fd9, #f4c29b);
+}
+/* #702fd9, #feb47b */
+
+#fitness-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7em;
+}
+
+#fitness-title > h2 {
+  color: #f0f3f8;
+}
+
+#logout-p {
+  font-size: 4em;
+  color: #ffffff;
+}
+
+.logout-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  height: 45%;
+  width: 100%;
+  padding: 3em;
+  background-color: #f5f6f6;
+}
+
+#logout-middle-p {
+  font-size: 1em;
+  color: #240654;
+}
+
+.logout-middle .logout-btn {
+  display: flex;
+  width: 14rem;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 1em;
+  margin-top: 2em;
+  background-color: #9469F8;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.logout-middle .logout-btn:hover {
+  background-color: #BCA0FD;
+}
+
+#logout-btn-p {
+  color: #f5f6f6;
+}

@@ -31,7 +31,8 @@
 .fitness-home-icon {
   display: flex;
   justify-content: center;
-  padding: 30px;
+  align-items: center;
+  padding: 1.9em;
 }
 
 .fitness-home-icon h2 {
@@ -105,12 +106,11 @@ hr:nth-of-type(2) {
 
 .loggout {
   position: inherit;
-
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 235px;
-  padding: 18px 33px;
-  
+  padding: 1em 2.5em
 }
 
 .loggout p {

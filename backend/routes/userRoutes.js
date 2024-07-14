@@ -6,6 +6,7 @@ const {
   currentUser,
   uploadAvatar,
   updateUser,
+  createWorkoutTable,
 } = require("../controllers/userControllers");
 const validateToken = require("../middleware/validTokenHandler");
 
@@ -30,5 +31,7 @@ router.get("/homepage", validateToken, currentUser);
 router.put("/homepage/user", updateUser);
 
 router.post("/homepage/user", upload.single('file'), uploadAvatar);
+
+router.post("/homepage/workout/:date", createWorkoutTable);
 
 module.exports = router;

@@ -1,33 +1,145 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./DataTable.css";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/IndeterminateCheckBoxOutlined";
 
-const DataTable = ({ numRow, setNumRow, numCol, setNumCol, data, setData }) => {
+const DataTable = ({
+  date,
+  numRow,
+  setNumRow,
+  numCol,
+  setNumCol,
+  data,
+  setData,
+  setSubmitMessage,
+}) => {
+  const [userId, setUserId] = useState("");
+
   useEffect(() => {
-    
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+        if (token) {
+          const response = await axios.get("http://localhost:5001/homepage", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUserId(response.data._id);
+          // console.log("Response Username ", response);
+          const dataTableIndex = response.data.dataTables.findIndex(
+            (workout) => workout.workoutDate === date
+          );
+
+          // console.log(dataTableIndex);
+          const dtRow =
+            dataTableIndex !== -1
+              ? response.data.dataTables[dataTableIndex].numRow
+              : numRow;
+          const dtCol =
+            dataTableIndex !== -1
+              ? response.data.dataTables[dataTableIndex].numCol
+              : numCol;
+
+          if (dataTableIndex !== -1) {
+            const dataTable = response.data.dataTables[dataTableIndex];
+            console.log("DT: ", dataTable);
+
+            if (dataTable) {
+              setNumRow(dtRow);
+              setNumCol(dtCol);
+            }
+
+            setData(() => {
+              const rows = new Array(dtRow)
+                .fill(null)
+                .map(() => new Array(dtCol).fill(""));
+              rows[0][0] = "Actions";
+              for (let i = 1; i < dtCol; i++) {
+                rows[0][i] = `Set ${i} (lb x #)`;
+              }
+
+              for (let row = 1; row < dtRow - 1; row++) {
+                rows[row][0] = dataTable.data[row - 1].action;
+                for (let col = 1; col < dtCol; col++) {
+                  rows[row][col] = dataTable.data[row - 1].sets[col - 1]
+                    ? dataTable.data[row - 1].sets[col - 1]
+                    : "";
+                }
+              }
+
+              console.log(rows);
+              return rows;
+            });
+          } else {
+            setData(() => {
+              const rows = new Array(dtRow)
+                .fill(null)
+                .map(() => new Array(dtCol).fill(""));
+              rows[0][0] = "Actions";
+              for (let i = 1; i < dtCol; i++) {
+                rows[0][i] = `Set ${i} (lb x #)`;
+              }
+
+              for (let row = 1; row < dtRow - 1; row++) {
+                rows[row][0] = "";
+                for (let col = 1; col < dtCol; col++) {
+                  rows[row][col] = "";
+                }
+              }
+
+              console.log(rows);
+              return rows;
+            });
+          }
+
+          // console.log(data);
+        } else {
+          console.error("No token found");
+        }
+      } catch (error) {
+        console.error("There was an error fetching the data!", error);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
     setData(() => {
-      console.log(data.length);
-      
-      const dtRowLen = numRow - data.length;
-      const dtColLen = numCol ;
+      const dtRowLen = data.length;
+      const dtColLen = data[0].length;
       const diffRow = numRow - dtRowLen;
       const diffCol = numCol - dtColLen;
 
-      console.log(diffRow);
-      console.log(diffCol);
+      // console.log(data);
+      // console.log(data[0]);
+      // console.log("Num Row: " + numRow);
+      // console.log("Num Col: " + numCol);
+      // console.log("Data Row: " + dtRowLen);
+      // console.log("Data Col: " + dtColLen);
+      // console.log("Diff Row: " + diffRow);
+      // console.log("Diff Col: " + diffCol);
+      // console.log("");
       const rows = data.map((row) => row.slice());
-      if (diffRow > 0) {
-        rows.forEach((row) => {
-          for (let i = 0; i < diffCol; i++) {
-            row.push(`Set${data[0].length - 1 + i}`);
-          }
+      if (diffCol > 0) {
+        
+        rows.forEach((row, index) => {
+          row.push(index === 0 ? `Set${dtColLen} (lb x #)` : "");
         });
+      } else if (diffCol < 0) {
+        rows.forEach((row, index) => {
+          row[row.length - 2] = (index === 0) ? row[row.length - 2] : "";
+        })
+        rows.forEach(row => row.pop())
       }
 
-      if (diffCol > 0) {
-        for (let i = 0; i < diffRow; i++) {
-          rows.push(new Array(numCol).fill(""));
-        }
+      if (diffRow > 0) {
+        rows.push(new Array(numCol).fill(""));
+      } else if (diffRow < 0) {
+        rows[rows.length - 2] = rows[rows.length - 2].map(() => '');
+        rows.pop();
+
       }
       return rows;
     });
@@ -50,11 +162,21 @@ const DataTable = ({ numRow, setNumRow, numCol, setNumCol, data, setData }) => {
     setData(updatedData);
   };
 
-  const updateTable = (rowIndex, colIndex) => {
+  const addTable = (rowIndex, colIndex) => {
+    setSubmitMessage('');
     if (rowIndex === 0) {
       setNumCol(numCol + 1);
     } else if (colIndex === 0) {
       setNumRow(numRow + 1);
+    }
+  };
+
+  const minusTable = (rowIndex, colIndex) => {
+    setSubmitMessage('');
+    if (rowIndex === 0) {
+      setNumCol(numCol - 1);
+    } else if (colIndex === 0) {
+      setNumRow(numRow - 1);
     }
   };
 
@@ -79,17 +201,49 @@ const DataTable = ({ numRow, setNumRow, numCol, setNumCol, data, setData }) => {
                   {(rowIndex === 0 && colIndex === numCol - 1) ||
                   (rowIndex === numRow - 1 && colIndex === 0) ? (
                     <div className="add">
-                      <div
-                        className="add-container"
-                        onClick={() => updateTable(rowIndex, colIndex)}
-                      >
+                      <div className="add-container">
                         <AddBoxOutlinedIcon
                           style={{
                             transform: "scale(0.9)",
                             margin: "2px",
+                            cursor: 'pointer'
                           }}
+                          onClick={() => addTable(rowIndex, colIndex)}
                         />
-                        {rowIndex === numRow - 1 && <p>New</p>}
+                        {(rowIndex === numRow - 1 &&
+                          rowIndex >= 4 &&
+                          colIndex === 0 && (
+                            <p style={{ fontSize: "1em" }}>/</p>
+                          )) ||
+                          (rowIndex === 0 &&
+                            colIndex === numCol - 1 &&
+                            colIndex >= 4 && (
+                              <p style={{ fontSize: "1em" }}>/</p>
+                            ))}
+                        {(rowIndex === numRow - 1 &&
+                          rowIndex >= 4 &&
+                          colIndex === 0 && (
+                            <IndeterminateCheckBoxOutlinedIcon
+                              style={{
+                                transform: "scale(0.9)",
+                                margin: "2px",
+                                cursor: 'pointer',
+                              }}
+                              onClick={() => minusTable(rowIndex, colIndex)}
+                            />
+                          )) ||
+                          (rowIndex === 0 &&
+                            colIndex === numCol - 1 &&
+                            colIndex >= 4 && (
+                              <IndeterminateCheckBoxOutlinedIcon
+                                style={{
+                                  transform: "scale(0.9)",
+                                  margin: "2px",
+                                  cursor: 'pointer',
+                                }}
+                                onClick={() => minusTable(rowIndex, colIndex)}
+                              />
+                            ))}
                       </div>
                     </div>
                   ) : (
@@ -108,7 +262,7 @@ const DataTable = ({ numRow, setNumRow, numCol, setNumCol, data, setData }) => {
                       style={{
                         width:
                           colIndex === numCol - 1
-                            ? "3em"
+                            ? "6em"
                             : colIndex === 0
                             ? "15em"
                             : "12em",

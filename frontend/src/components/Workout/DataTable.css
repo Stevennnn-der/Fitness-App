@@ -49,7 +49,6 @@
 .add-container {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .add-container p {

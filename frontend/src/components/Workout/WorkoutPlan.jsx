@@ -38,11 +38,13 @@ const actions = [
 
 const WorkoutPlan = () => {
   const { date } = useParams();
-  const [userId, setUserId] = useState("");
   const [bodyPart, setBodyPart] = useState([]);
-  const [numRow, setNumRow] = useState(3);
-  const [numCol, setNumCol] = useState(3);
+  const [userId, setUserId] = useState("");
+  const [numRow, setNumRow] = useState(4);
+  const [numCol, setNumCol] = useState(4);
   const [data, setData] = useState([[]]);
+  const [submitMessage, setSubmitMessage] = useState('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,49 +57,7 @@ const WorkoutPlan = () => {
               Authorization: `Bearer ${token}`,
             },
           });
-
-          console.log("Response Username ", response);
-          const dataTableIndex = response.data.dataTables.findIndex(
-            (workout) => workout.workoutDate === date
-          );
-          // console.log(dataTableIndex);
-
-          const dataTable = response.data.dataTables[dataTableIndex];
-          console.log("DT: ", dataTable);
           setUserId(response.data._id);
-          if (dataTable) {
-            setNumRow(dataTable.numRow);
-            setNumCol(dataTable.numCol);
-          }
-
-          setData(() => {
-            const rows = new Array(numRow)
-              .fill(null)
-              .map(() => new Array(numCol).fill(""));
-            rows[0][0] = "Actions";
-
-            for (let i = 1; i < numCol - 1; i++) {
-              rows[0][i] = `Set ${i}`;
-            }
-            console.log(dataTable.data);
-            // console.log(dataTable.data[0]);
-            // console.log(dataTable.data[0].action);
-            // console.log(dataTable.data[0].sets[1]);
-            if (dataTable.data) {
-              for (let row = 1; row < numRow - 1; row++) {
-                rows[row][0] = dataTable.data[row - 1].action;
-                // console.log(dataTable.data[row].action);
-                for (let col = 1; col < numCol - 1; col++) {
-                  rows[row][col] = dataTable.data[row - 1].sets[col - 1];
-                }
-              }
-            }
-            
-            console.log(rows);
-            return rows;
-          });
-          
-          console.log(data);
         } else {
           console.error("No token found");
         }
@@ -124,8 +84,6 @@ const WorkoutPlan = () => {
   };
 
   const writeWorkoutTable = async () => {
-    console.log("hiii");
-    console.log(bodyPart);
     if (
       !userId ||
       !date ||
@@ -133,11 +91,10 @@ const WorkoutPlan = () => {
       numCol === undefined ||
       !bodyPart
     ) {
-      console.error("Missing required fields");
+      setSubmitMessage("Missing required fields");
       return; // Early return if data is incomplete
     }
-    console.log("DATA");
-    console.log(data);
+  
     try {
       const response = await fetch(
         `http://localhost:5001/homepage/workout/${date}`,
@@ -162,6 +119,7 @@ const WorkoutPlan = () => {
       }
 
       const datas = await response.json(); // Assuming the server responds with JSON data
+      setSubmitMessage("Saved Successfully!");
       console.log("Workout data saved successfully:", datas);
     } catch (error) {
       console.error("Failed to write workout data:", error);
@@ -203,12 +161,14 @@ const WorkoutPlan = () => {
       </div>
       <div className="input-table">
         <DataTable
+          date={date}
           numRow={numRow}
           setNumRow={setNumRow}
           numCol={numCol}
           setNumCol={setNumCol}
           data={data}
           setData={setData}
+          setSubmitMessage={setSubmitMessage}
         />
       </div>
       <div className="finish-btn-container">
@@ -216,6 +176,7 @@ const WorkoutPlan = () => {
           <DoneAllTwoToneIcon />
           <p>Save</p>
         </button>
+        {<p id='submit-message'>{submitMessage}</p>}
       </div>
     </div>
   );

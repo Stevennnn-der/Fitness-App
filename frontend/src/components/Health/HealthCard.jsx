@@ -1,20 +1,20 @@
 import React from "react";
-import "./StepsCard.css";
+import "./HealthCard.css";
 
-const Steps = () => {
+const Health = () => {
   return (
-    <div className="steps">
+    <div className="health">
       <div className="container">
         <div className="icon">
           <i
-            className="fa-solid fa-stairs"
+            className="fa-solid fa-heart"
             style={{ color: "#E4EAF3", fontSize: "1.5rem" }}
           />
         </div>
-        <p>Steps</p>
+        <p>Health</p>
       </div>
     </div>
   );
 };
 
-export default Steps;
+export default Health;

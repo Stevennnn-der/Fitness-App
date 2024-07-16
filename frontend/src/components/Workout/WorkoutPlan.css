@@ -17,7 +17,7 @@
   margin-top: 0;
 }
 
-#go-to-info {
+.workout-plan #go-to-info {
   position: absolute;
   top: 1em;
   left: 1.2em;

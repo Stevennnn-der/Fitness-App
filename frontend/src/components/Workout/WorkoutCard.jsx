@@ -3,7 +3,7 @@ import "./WorkoutCard.css";
 
 const Workout = () => {
   return (
-    <div className="workout">
+    <div className="workoutCard">
       <div className="container">
         <div className="icon">
           <i

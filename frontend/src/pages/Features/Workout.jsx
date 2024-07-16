@@ -21,17 +21,17 @@ const Workout = () => {
 
   return (
     <div className="workout">
-      <div className="header">
+      <div className="workout-header">
         <KeyboardDoubleArrowLeftOutlinedIcon
           id="go-to-info"
           onClick={() => returnToHome()}
           style={{ cursor: "pointer", fontSize: "2.5em", color: "#004352" }}
         />
-        <div className="header-title">
+        <div className="workout-header-title">
           <h2 id="header-h2">Make Your WORKOUT PLAN! </h2>
         </div>
       </div>
-      <div className="middle-section">
+      <div className="workout-middle-section">
         <Calendar
           bordered
           renderCell={renderCell}

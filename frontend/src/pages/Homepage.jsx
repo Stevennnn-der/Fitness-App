@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Overview from "../components/Overview";
 import Goals from "../components/Goals/Goals";
 import Diet from "../components/Diet";
-import Steps from "../components/Steps/Steps";
+import Health from "../components/Health/Health";
 import Calories from "../components/Calories/Calories";
 import Suggestion from "../components/Suggestion/Suggestion";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -16,6 +16,7 @@ const components = [
   { name: "Goals", icon: "fa-bullseye" },
   { name: "Diet Plan", icon: "fa-cookie-bite" },
   { name: "Workout", icon: "fa-dumbbell" },
+  { name: 'Health', icon: "fa-heart" },
 ];
 
 const navbar_icon = [
@@ -23,10 +24,10 @@ const navbar_icon = [
   { name: "fa-user", link: "/homepage/user" },
 ];
 
-const Homepage = () => {
+const Homepage = ({ menu }) => {
   const [id, setId] = useState("");
   const [onOverview, setOnOverview] = useState(true);
-  const [left_menu, setLeftMenu] = useState("Overview");
+  const [left_menu, setLeftMenu] = useState(menu);
   const [selectedPage, setSelectPage] = useState();
   const [username, setUsername] = useState(null);
   const navigate = useNavigate();
@@ -55,9 +56,10 @@ const Homepage = () => {
     } else if (left_menu === "Calories") {
       setOnOverview(true);
       setSelectPage(<Calories />);
-    } else if (left_menu === "Steps") {
-      setOnOverview(true);
-      setSelectPage(<Steps />);
+    } else if (left_menu === "Health") {
+      setOnOverview(false);
+      setSelectPage(<Health />);
+      navigate("/homepage/health");
     }
   }
 
@@ -112,7 +114,6 @@ const Homepage = () => {
     const timer = setInterval(() => {
       setHour(new Date().getHours());
     }, 1000 * 60 * 60); // Update the hour every hour
-    console.log(hour);
     // Cleanup the interval on component unmount
     fetchUser();
     navigateMenu();

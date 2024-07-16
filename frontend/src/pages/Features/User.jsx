@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./User.css";
-import ImageUpload from "../components/ImageUpload";
+import ImageUpload from "../../components/ImageUpload";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
@@ -95,14 +95,14 @@ const User = () => {
         </Link>
         <p>User Profile</p>
       </div>
-      <div className="middle-section">
-        <div className="left-section">
+      <div className="user-middle-section">
+        <div className="user-left-section">
           <ImageUpload user_id={id} user_avatar={avatar}/>
           <p className="username">{username}</p>
           <p className="email">{email}</p>
           <button onClick={canEditProfile}>Edit Profile</button>
         </div>
-        <div className="right-section">
+        <div className="user-right-section">
           <p id="user-profile">{username}'s Profile </p>
 
           <Box

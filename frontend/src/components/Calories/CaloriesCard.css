@@ -16,6 +16,9 @@
 }
 
 .calories .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 15px;
     width: 40px;
     height: 40px;
@@ -23,11 +26,7 @@
     border-radius: 8px;
 }
 
-.calories i {
-    position: relative;
-    top: 7px;
-    left: 9px;
-}
+
 
 .calories p {
     color: white;

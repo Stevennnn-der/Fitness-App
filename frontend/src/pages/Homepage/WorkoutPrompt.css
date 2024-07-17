@@ -1,0 +1,59 @@
+.workout-prompt {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, rgb(6, 152, 185), rgba(89, 89, 89, 0.5));
+  background-color: #0792B1;
+  gap: 2.5em;
+}
+
+.workout-prompt-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  gap: 1em;
+}
+
+.workout-prompt-header h1{
+  font-size: 4em;
+  color: white;
+}
+
+.workout-prompt-header p{
+  font-size: 1.3em;
+  color: white;
+}
+
+.workout-prompt-middle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.workout-prompt-button {
+  display: flex;
+  width: 18em;
+  height: 5em;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #bcf1fd;
+  transition: background-color 0.2s ease, transform 0.3s ease-in;
+}
+
+.workout-prompt-button p{
+  font-size: 1.4em;
+  color: #004352;
+}
+
+.workout-prompt-button:hover {
+  transform: scale(1.2);
+}

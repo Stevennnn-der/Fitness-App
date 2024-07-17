@@ -1,10 +1,10 @@
-.workoutCard {
+.journalCard {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.workoutCard .container {
+.journalCard .journal-container {
     width: 100%;
     height: 160px;
     background: linear-gradient(to bottom, #1cb7d2 30%, #70e4f5 60%);
@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 
-.workoutCard .icon {
+.journalCard .journal-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -26,7 +26,7 @@
     border-radius: 8px;
 }
 
-.workoutCard p {
+.journalCard p {
     color: white;
     font-size: 16px;
 }

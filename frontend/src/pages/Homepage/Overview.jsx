@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Overview.css";
-import SuggestionCard from "./Suggestion/SuggestionCard";
-import CaloriesCard from "./Calories/CaloriesCard";
-import HealthCard from "./Health/HealthCard";
-import WorkoutCard from "./Workout/WorkoutCard";
-import Suggestion from "./Suggestion/Suggestion";
-import Calories from "./Calories/Calories";
-import Health from "./Health/Health";
-
-import GoalsCard from "./Goals/GoalsCard";
+import SuggestionCard from "../../components/Cards/SuggestionCard";
+import HealthCard from "../../components/Cards/HealthCard";
+import Suggestion from "../../components/Suggestion/Suggestion";
+import GoalsCard from "../../components/Cards/GoalsCard";
+import AwardCard from "../../components/Cards/AwardCard";
+import JournalCard from "../../components/Cards/JournalCard";
 
 const Overview = ({ setSelectPage }) => {
   // const [selectedComponent, setSelectedComponent] = useState();
@@ -36,13 +33,13 @@ const Overview = ({ setSelectPage }) => {
       </div>
       <div
         onClick={() =>
-          setSelectPage('Workout')
+          setSelectPage('Journal')
         }
       >
-        <WorkoutCard />
+        <JournalCard />
       </div>
-      <div onClick={() => setSelectPage('Calories')}>
-        <CaloriesCard />
+      <div onClick={() => setSelectPage('Award')}>
+        <AwardCard />
       </div>
       <div onClick={() => setSelectPage('Health')}>
         <HealthCard />

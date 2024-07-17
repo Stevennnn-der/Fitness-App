@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
-const workoutSchema = require("./workoutTableModel");
+const workoutSchema = require("./workoutTableSchema");
+const weightSchema = require("./weightSchema");
+const sleepSchema = require("./sleepSchema");
 
 const userSchema = mongoose.Schema({
   avatar: {
     type: String,
-    default: '/static/media/default-avatar-image.b0cd019b50700d3cbaa3.jpeg',
+    default: "/static/media/default-avatar-image.b0cd019b50700d3cbaa3.jpeg",
   },
 
   email: {
@@ -40,14 +42,22 @@ const userSchema = mongoose.Schema({
   address: {
     type: String,
     required: [true, "Please Add the Address"],
-  }, 
+  },
 
   gender: {
     type: String,
     required: [true, "Please Add the Gender"],
   },
 
-  dataTables: [workoutSchema]
+  dataTables: [workoutSchema],
+  weights: [weightSchema],
+  sleepHours: [sleepSchema],
+});
+
+userSchema.pre('save', function (next) {
+  this.weights.sort((a, b) => new Date(a.weightDate) - new Date(b.weightDate));
+  this.sleepHours.sort((a, b) => new Date(a.sleepDate) - new Date(b.sleepDate));
+  next();
 });
 
 module.exports = mongoose.model("User", userSchema);

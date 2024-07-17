@@ -2,21 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Homepage.css";
 import { Link, useNavigate } from "react-router-dom";
-import Overview from "../components/Overview";
-import Goals from "../components/Goals/Goals";
-import Diet from "../components/Diet";
-import Health from "../components/Health/Health";
-import Calories from "../components/Calories/Calories";
-import Suggestion from "../components/Suggestion/Suggestion";
+import Overview from "./Overview";
+import Goals from "../../components/Goals/Goals";
+import Diet from "../../components/Diet";
+import Health from "./Health/Health";
+import Award from "./Award";
+import Journal from "./Journal";
+import Suggestion from "../../components/Suggestion/Suggestion";
+import Weight from './Health/Weight';
+import Sleep from './Health/Sleep';
+import Steps from './Health/Steps';
+import Calories from './Health/Calories';
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import { WorkoutPrompt } from "./WorkoutPrompt";
 
 const components = [
   { name: "Overview", icon: "fa-vector-square" },
   { name: "Goals", icon: "fa-bullseye" },
   { name: "Diet Plan", icon: "fa-cookie-bite" },
   { name: "Workout", icon: "fa-dumbbell" },
-  { name: 'Health', icon: "fa-heart" },
+  { name: "Health", icon: "fa-heart" },
 ];
 
 const navbar_icon = [
@@ -24,50 +30,124 @@ const navbar_icon = [
   { name: "fa-user", link: "/homepage/user" },
 ];
 
+
+
 const Homepage = ({ menu }) => {
   const [id, setId] = useState("");
-  const [onOverview, setOnOverview] = useState(true);
+  const [choiceAtLeftMenu, setChoiceAtLeftMenu] = useState('');
   const [left_menu, setLeftMenu] = useState(menu);
   const [selectedPage, setSelectPage] = useState();
   const [username, setUsername] = useState(null);
   const navigate = useNavigate();
   const [hour, setHour] = useState(new Date().getHours());
 
-  const updateMenu = (menu) => {
-    setLeftMenu(menu);
+  const updateMenu = (menus) => {
+    setLeftMenu(menus);
     navigateMenu();
   };
 
-  function navigateMenu() {
-    if (left_menu === "Overview") {
-      setOnOverview(true);
-      setSelectPage(<Overview setSelectPage={setLeftMenu} />);
-    } else if (left_menu === "Goals") {
-      setOnOverview(false);
-      setSelectPage(<Goals />);
-    } else if (left_menu === "Diet Plan") {
-      setOnOverview(false);
-      setSelectPage(<Diet />);
-    } else if (left_menu === "Suggestion") {
-      setOnOverview(true);
-      setSelectPage(<Suggestion />);
-    } else if (left_menu === "Workout") {
-      navigate("/homepage/workout");
-    } else if (left_menu === "Calories") {
-      setOnOverview(true);
-      setSelectPage(<Calories />);
-    } else if (left_menu === "Health") {
-      setOnOverview(false);
-      setSelectPage(<Health />);
-      navigate("/homepage/health");
-    }
-  }
+  const homepage_component = [
+    {
+      menu: "Overview",
+      canNavigate: true,
+      navigate: "/homepage",
+      atLeftMenu: 'Overview',
+      page: <Overview setSelectPage={setLeftMenu} />,
+    },
+    {
+      menu: "Suggestion",
+      canNavigate: false,
+      navigate: "/homepage",
+      atLeftMenu: 'Overview',
+      page: <Suggestion />,
+    },
+    {
+      menu: "Award",
+      canNavigate: false,
+      navigate: "/homepage",
+      atLeftMenu: 'Overview',
+      page: <Award />,
+    },
+    {
+      menu: "Journal",
+      canNavigate: false,
+      navigate: "/homepage",
+      atLeftMenu: 'Overview',
+      page: <Journal />,
+    },
+    {
+      menu: "Goals",
+      canNavigate: false,
+      navigate: "/homepage/goals",
+      atLeftMenu: 'Goals',
+      page: <Goals />,
+    },
+    {
+      menu: "Diet Plan",
+      canNavigate: false,
+      navigate: "/homepage/diet",
+      atLeftMenu: 'Diet Plan',
+      page: <Diet />,
+    },
+    {
+      menu: "Workout",
+      canNavigate: false,
+      navigate: "/homepage",
+      atLeftMenu: 'Workout',
+      page: <WorkoutPrompt />,
+    },
+    {
+      menu: "Health",
+      canNavigate: true,
+      navigate: "/health",
+      atLeftMenu: 'Health',
+      page: <Health />,
+    },
+    {
+      menu: "Weight",
+      canNavigate: false,
+      navigate: "/homepage/weight",
+      atLeftMenu: 'Health',
+      page: <Weight />,
+    },
+    {
+      menu: "Sleep",
+      canNavigate: false,
+      navigate: "/homepage/sleep",
+      atLeftMenu: 'Health',
+      page: <Sleep />,
+    },
+    {
+      menu: "Calories",
+      canNavigate: false,
+      navigate: "/homepage/calories",
+      atLeftMenu: 'Health',
+      page: <Calories />,
+    },
+    {
+      menu: "Steps",
+      canNavigate: false,
+      navigate: "/homepage/steps",
+      atLeftMenu: 'Health',
+      page: <Steps />,
+    },
+  ];
+
+  const navigateMenu = () => {
+    homepage_component.forEach((item) => {
+      if (left_menu === item.menu) {
+        if (item.canNavigate) navigate(item.navigate);
+        setChoiceAtLeftMenu(item.atLeftMenu);
+        setSelectPage(item.page);
+      }
+    });
+  };
 
   const leftMenuComponent = components.map((item) => (
     <li onClick={() => updateMenu(item.name)}>
       <button
         className={`${
-          left_menu === item.name || (item.name === "Overview" && onOverview)
+          left_menu === item.name || (item.name === choiceAtLeftMenu)
             ? "active"
             : ""
         }`}
@@ -89,6 +169,15 @@ const Homepage = ({ menu }) => {
   const loggoutUser = () => {
     navigate("/logout");
   };
+
+  useEffect(() => {
+    setLeftMenu(menu);
+    console.log(left_menu);
+  }, [menu]);
+
+  useEffect(() => {
+    navigateMenu();
+  }, [left_menu]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -116,18 +205,17 @@ const Homepage = ({ menu }) => {
     }, 1000 * 60 * 60); // Update the hour every hour
     // Cleanup the interval on component unmount
     fetchUser();
-    navigateMenu();
     return () => clearInterval(timer);
-  }, [left_menu]);
+  }, []);
+
+
 
   return (
     <div className="homepage">
       <div className="left-menu-bar">
         <div className="fitness-home-icon">
           <h2>Fitness</h2>
-          <FitnessCenterIcon
-            style={{ color: "#fb7316", fontSize: "1.9em" }}
-          />
+          <FitnessCenterIcon style={{ color: "#fb7316", fontSize: "1.9em" }} />
         </div>
         <hr />
         <div className="menu-options">

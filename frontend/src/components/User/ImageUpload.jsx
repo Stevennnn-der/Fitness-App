@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ImageUpload.css";
-import DefaultAvatar from "../assets/default-avatar-image.jpeg";
+import DefaultAvatar from "../../assets/default-avatar-image.jpeg";
 
 const ImageUpload = ({ user_id, user_avatar}) => {
   const defaultURL = !user_avatar ? DefaultAvatar : user_avatar;

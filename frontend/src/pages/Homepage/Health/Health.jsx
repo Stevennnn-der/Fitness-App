@@ -6,8 +6,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import UpdateComp from "./UpdateComp";
+import UpdateComp from "../../../components/Health/UpdateComp";
 
 const colors = [
   "#4AC3DE",
@@ -25,6 +24,7 @@ const features = [
     unit: "kg",
     time: "2025/13/32",
     icon: "fa-weight-scale",
+    navigate: "/health/weight",
   },
   {
     type: "Sleep",
@@ -32,6 +32,7 @@ const features = [
     unit: ["h", "min"],
     time: "2026/14/33",
     icon: "fa-moon",
+    navigate: "/health/sleep",
   },
   {
     type: "Steps",
@@ -39,6 +40,7 @@ const features = [
     unit: "steps",
     time: "2027/15/33",
     icon: "fa-shoe-prints",
+    navigate: "/health/steps",
   },
   {
     type: "Calories",
@@ -46,6 +48,7 @@ const features = [
     unit: "cals",
     time: "2028/16/35",
     icon: "fa-fire",
+    navigate: "/health/calories",
   },
 ];
 
@@ -53,7 +56,7 @@ const Health = () => {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
   const [userName, setUserName] = useState("");
-  const [type, setType] = useState([]);
+  const [type, setType] = useState(["Weight", "Sleep"]);
   const [displayOption, setDisplayOption] = useState("Week");
   const [numComponent, setNumComponent] = useState(4);
   const [clickUpdateBtn, setClickUpdateBtn] = useState(false);
@@ -69,7 +72,11 @@ const Health = () => {
   const featuresComponent = features.map((item, index) => {
     if (type.includes(item.type)) {
       return (
-        <div className="health-summary-component" style={{ cursor: "pointer" }}>
+        <div
+          className="health-summary-component"
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate(item.navigate)}
+        >
           <div className="health-summary-header">
             <div
               className="health-component-type"
@@ -117,7 +124,7 @@ const Health = () => {
           });
 
           const data = response.data;
-          console.log(data);
+          // console.log(data);
           setUserId(data._id);
           setUserName(data.username);
         } else {

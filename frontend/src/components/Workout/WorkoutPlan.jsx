@@ -80,7 +80,7 @@ const WorkoutPlan = () => {
   };
 
   const returnToWorkout = () => {
-    navigate("/homepage/workout");
+    navigate("/workout");
   };
 
   const writeWorkoutTable = async () => {

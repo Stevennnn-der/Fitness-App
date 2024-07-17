@@ -11,7 +11,7 @@ const Workout = () => {
   const handleSelectDate = (date) => {
     const formattedDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
     console.log(formattedDate);
-    navigate(`/homepage/workout/${formattedDate}`);
+    navigate(`/workout/${formattedDate}`);
   }
 
   const returnToHome = () => {

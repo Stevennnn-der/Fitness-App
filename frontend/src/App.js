@@ -1,5 +1,5 @@
 import "./App.css";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/Homepage/Homepage";
 import Login from "./pages/Heros/Login";
 import Signup from "./pages/Heros/Signup";
 import User from "./pages/Features/User";
@@ -17,10 +17,14 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/homepage" element={<Homepage menu='Overview'/>} />
-        <Route path="/homepage/health" element={<Homepage menu='Health'/>} />
-        <Route path="/homepage/user" element={<User />} />
-        <Route path="/homepage/workout" element={<Workout />} />
-        <Route path="/homepage/workout/:date" element={<WorkoutPlan />} />
+        <Route path="/health" element={<Homepage menu='Health'/>} />
+        <Route path="/health/weight" element={<Homepage menu='Weight'/>} />
+        <Route path="/health/calories" element={<Homepage menu='Calories'/>} />
+        <Route path="/health/sleep" element={<Homepage menu='Sleep'/>} />
+        <Route path="/health/steps" element={<Homepage menu='Steps'/>} />
+        <Route path="/user" element={<User />} />
+        <Route path="/workout" element={<Workout />} />
+        <Route path="/workout/:date" element={<WorkoutPlan />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
     </BrowserRouter>

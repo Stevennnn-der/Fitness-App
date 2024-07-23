@@ -9,7 +9,7 @@ import Health from "./Health/Health";
 import Award from "./Award";
 import Journal from "./Journal";
 import Suggestion from "../../components/Suggestion/Suggestion";
-import Weight from './Health/Weight';
+import Weight from './Health/Weight/Weight';
 import Sleep from './Health/Sleep';
 import Steps from './Health/Steps';
 import Calories from './Health/Calories';
@@ -20,14 +20,14 @@ import { WorkoutPrompt } from "./WorkoutPrompt";
 const components = [
   { name: "Overview", icon: "fa-vector-square" },
   { name: "Goals", icon: "fa-bullseye" },
-  { name: "Diet Plan", icon: "fa-cookie-bite" },
+  // { name: "Diet Plan", icon: "fa-cookie-bite" },
   { name: "Workout", icon: "fa-dumbbell" },
   { name: "Health", icon: "fa-heart" },
 ];
 
 const navbar_icon = [
-  { name: "fa-bell", link: "/homepage/notification" },
-  { name: "fa-user", link: "/homepage/user" },
+  { name: "fa-bell", link: "/notification" },
+  { name: "fa-user", link: "/user" },
 ];
 
 
@@ -82,13 +82,13 @@ const Homepage = ({ menu }) => {
       atLeftMenu: 'Goals',
       page: <Goals />,
     },
-    {
-      menu: "Diet Plan",
-      canNavigate: false,
-      navigate: "/homepage/diet",
-      atLeftMenu: 'Diet Plan',
-      page: <Diet />,
-    },
+    // {
+    //   menu: "Diet Plan",
+    //   canNavigate: false,
+    //   navigate: "/homepage/diet",
+    //   atLeftMenu: 'Diet Plan',
+    //   page: <Diet />,
+    // },
     {
       menu: "Workout",
       canNavigate: false,
@@ -172,7 +172,6 @@ const Homepage = ({ menu }) => {
 
   useEffect(() => {
     setLeftMenu(menu);
-    console.log(left_menu);
   }, [menu]);
 
   useEffect(() => {
@@ -223,10 +222,6 @@ const Homepage = ({ menu }) => {
         </div>
         <hr />
         <div className="loggout">
-          {/* <i
-              className="fa-solid fa-angles-left"
-              style={{ textDecoration: "none" }}
-            /> */}
           <ExitToAppIcon onClick={loggoutUser} style={{ cursor: "pointer" }} />
           <button onClick={loggoutUser}>Logout</button>
         </div>

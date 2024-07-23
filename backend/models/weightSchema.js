@@ -5,6 +5,4 @@ const weightSchema = new mongoose.Schema({
     weightInKg: Number,
 });
 
-// const WorkoutTable = mongoose.model('WorkoutTable', workoutSchema);
-
 module.exports = weightSchema;

@@ -8,12 +8,16 @@ const port = process.env.PORT || 5001;
 const app = express();
 
 dotenv.config();
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000' 
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 db();
 
 app.use("/", require("./routes/userRoutes"));
+app.use("/homepage", require("./routes/homepageRoutes"));
+app.use("/health", require("./routes/healthRoutes"));
 app.use(express.static('assets'));
 
 app.use(errorHandler);

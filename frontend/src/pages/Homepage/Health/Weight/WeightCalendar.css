@@ -1,0 +1,67 @@
+.custom-demo-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  /* Chrome, Safari, Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+#root
+  > div
+  > div.right-menu
+  > div.menu
+  > div
+  > div.weight-left-section
+  > div.weight-left-top
+  > div
+  > div
+  > div
+  > div.MuiPickersFadeTransitionGroup-root.MuiDateCalendar-viewTransitionContainer.css-15v8kdh-MuiPickersFadeTransitionGroup-root-MuiDateCalendar-viewTransitionContainer
+  > div
+  > div
+  > div.MuiDayCalendar-header.css-i5q14k-MuiDayCalendar-header
+  span {
+  font-size: 1em;
+}
+
+#root
+  > div
+  > div.right-menu
+  > div.menu
+  > div
+  > div.weight-left-section
+  > div.weight-left-top
+  > div
+  > div
+  > div
+  > div.MuiPickersFadeTransitionGroup-root.MuiDateCalendar-viewTransitionContainer.css-15v8kdh-MuiPickersFadeTransitionGroup-root-MuiDateCalendar-viewTransitionContainer
+  > div
+  > div
+  > div.MuiPickersSlideTransition-root.MuiDayCalendar-slideTransition.css-1t0788u-MuiPickersSlideTransition-root-MuiDayCalendar-slideTransition
+  > div
+  > div
+  button {
+  font-size: 0.9em;
+}
+
+.weight-calendar-container {
+  height: 100%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #E4EAF3;
+  border-radius: 8px;
+
+}
+
+.weight-calendar-container > .weight-calendar-header {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5em;
+  margin-bottom: -0.5em;
+}

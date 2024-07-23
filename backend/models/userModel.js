@@ -50,13 +50,17 @@ const userSchema = mongoose.Schema({
   },
 
   dataTables: [workoutSchema],
-  weights: [weightSchema],
+  weights: {
+    goalInKg: { type: Number },
+    userWeight: [weightSchema],
+  },
+
   sleepHours: [sleepSchema],
 });
 
-userSchema.pre('save', function (next) {
-  this.weights.sort((a, b) => new Date(a.weightDate) - new Date(b.weightDate));
-  this.sleepHours.sort((a, b) => new Date(a.sleepDate) - new Date(b.sleepDate));
+userSchema.pre("save", function (next) {
+  this.weights.userWeight.sort((a, b) => new Date(a.weightDate) - new Date(b.weightDate));
+  this.sleepHours.sort((a, b) => new Date(b.sleepDate) - new Date(a.sleepDate));
   next();
 });
 

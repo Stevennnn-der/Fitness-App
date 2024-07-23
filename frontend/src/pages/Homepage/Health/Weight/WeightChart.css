@@ -1,0 +1,49 @@
+.chart-container {
+  background-image: linear-gradient(
+    to top,
+    #c4c3f0,
+    #6c6af4
+  ); /* Adjust the background color */
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  color: #ffffff; /* Sets the text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.recharts-text {
+  fill: #ffffff; /* Ensures all text in the chart is white */
+}
+
+.recharts-tooltip-wrapper {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.recharts-legend-item {
+  color: #ffffff !important; /* Set legend text color */
+}
+
+.recharts-dot {
+  stroke: #ffffff;
+  fill: #ffffff;
+}
+
+#root
+  > div
+  > div.right-menu
+  > div.menu
+  > div
+  > div.weight-right-section
+  > div
+  > div
+  > div.recharts-legend-wrapper
+  > ul
+  > li
+  > span {
+    color: white
+}

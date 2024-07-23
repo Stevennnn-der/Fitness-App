@@ -22,6 +22,7 @@ const User = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState('');
   const [address, setAddress] = useState("");
+  const [hasSave, setHasSave] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -80,6 +81,7 @@ const User = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const updatedUser = await response.json();
+      setHasSave(true);
       console.log("User updated successfully:", updatedUser);
     } catch (error) {
       console.error("Can not update user information!", error);
@@ -123,6 +125,7 @@ const User = () => {
               defaultValue=''
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
+              onClick={() => setHasSave(false)}
               style={{ width: "15rem" }}
             />
             <TextField
@@ -133,6 +136,7 @@ const User = () => {
               defaultValue=''
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
+              onClick={() => setHasSave(false)}
               style={{ width: "15rem" }}
             />
             <TextField
@@ -143,6 +147,7 @@ const User = () => {
               defaultValue=''
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              onClick={() => setHasSave(false)}
               style={{ width: "15rem" }}
             />
             <TextField
@@ -153,6 +158,7 @@ const User = () => {
               defaultValue=''
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              onClick={() => setHasSave(false)}
               style={{ width: "15rem" }}
             />
           </Box>
@@ -161,6 +167,7 @@ const User = () => {
             required={canEdit}
             disabled={!canEdit}
             sx={{ m: 1, minWidth: 80 }}
+            onClick={() => setHasSave(false)}
           >
             <InputLabel
               id={`demo-simple-select${
@@ -193,6 +200,7 @@ const User = () => {
               <SaveAltIcon />
               <p>Save</p>
             </button>
+            { hasSave && <span style={{ color: 'red' }}> Save Succesfully! </span>}
           </div>
         </div>
       </div>

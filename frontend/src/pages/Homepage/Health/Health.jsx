@@ -182,11 +182,6 @@ const Health = () => {
                 onClick={updateComponent}
                 style={{ fontSize: "2em", cursor: "pointer" }}
               />
-              {/* <p>|</p>
-            <i id='deleteComponent'
-              className="fa-solid fa-square-minus"
-              onClick={addComponent}
-              style={{ fontSize: "2em", cursor: "pointer" }}/> */}
             </div>
           </div>
           <div className="health-summary-container">

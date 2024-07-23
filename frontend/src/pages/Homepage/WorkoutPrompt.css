@@ -6,7 +6,6 @@
   justify-content: center;
   align-items: center;
   background: radial-gradient(circle, rgb(6, 152, 185), rgba(89, 89, 89, 0.5));
-  background-color: #0792B1;
   gap: 2.5em;
 }
 

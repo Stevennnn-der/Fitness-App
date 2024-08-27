@@ -1,5 +1,5 @@
 .background-image {
-  background-image: url('/Users/zhuhao/Desktop/Projects/Fitness-App/frontend/assets/login_background.jpg');
+  background-image: url('frontend/assets/login_background.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }

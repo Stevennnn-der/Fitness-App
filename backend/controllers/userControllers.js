@@ -21,6 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   // Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
+
   const user = await User.create({
     username,
     email,
@@ -68,8 +69,6 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(401).json({ message: "Email does NOT exist!" });
   }
 });
-
-
 
 module.exports = {
   registerUser,

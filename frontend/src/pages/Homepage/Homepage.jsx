@@ -4,7 +4,6 @@ import "./Homepage.css";
 import { Link, useNavigate } from "react-router-dom";
 import Overview from "./Overview";
 import Goals from "../../components/Goals/Goals";
-import Diet from "../../components/Diet";
 import Health from "./Health/Health";
 import Award from "./Award";
 import Journal from "./Journal";
@@ -19,10 +18,9 @@ import { WorkoutPrompt } from "./WorkoutPrompt";
 
 const components = [
   { name: "Overview", icon: "fa-vector-square" },
-  { name: "Goals", icon: "fa-bullseye" },
-  // { name: "Diet Plan", icon: "fa-cookie-bite" },
   { name: "Workout", icon: "fa-dumbbell" },
   { name: "Health", icon: "fa-heart" },
+  { name: "Goals", icon: "fa-bullseye" },
 ];
 
 const navbar_icon = [
@@ -82,13 +80,6 @@ const Homepage = ({ menu }) => {
       atLeftMenu: 'Goals',
       page: <Goals />,
     },
-    // {
-    //   menu: "Diet Plan",
-    //   canNavigate: false,
-    //   navigate: "/homepage/diet",
-    //   atLeftMenu: 'Diet Plan',
-    //   page: <Diet />,
-    // },
     {
       menu: "Workout",
       canNavigate: false,
@@ -110,27 +101,27 @@ const Homepage = ({ menu }) => {
       atLeftMenu: 'Health',
       page: <Weight />,
     },
-    {
-      menu: "Sleep",
-      canNavigate: false,
-      navigate: "/homepage/sleep",
-      atLeftMenu: 'Health',
-      page: <Sleep />,
-    },
-    {
-      menu: "Calories",
-      canNavigate: false,
-      navigate: "/homepage/calories",
-      atLeftMenu: 'Health',
-      page: <Calories />,
-    },
-    {
-      menu: "Steps",
-      canNavigate: false,
-      navigate: "/homepage/steps",
-      atLeftMenu: 'Health',
-      page: <Steps />,
-    },
+    // {
+    //   menu: "Sleep",
+    //   canNavigate: false,
+    //   navigate: "/homepage/sleep",
+    //   atLeftMenu: 'Health',
+    //   page: <Sleep />,
+    // },
+    // {
+    //   menu: "Calories",
+    //   canNavigate: false,
+    //   navigate: "/homepage/calories",
+    //   atLeftMenu: 'Health',
+    //   page: <Calories />,
+    // },
+    // {
+    //   menu: "Steps",
+    //   canNavigate: false,
+    //   navigate: "/homepage/steps",
+    //   atLeftMenu: 'Health',
+    //   page: <Steps />,
+    // },
   ];
 
   const navigateMenu = () => {
@@ -212,7 +203,7 @@ const Homepage = ({ menu }) => {
   return (
     <div className="homepage">
       <div className="left-menu-bar">
-        <div className="fitness-home-icon">
+        <div className="fitness-home-icon" style={{ cursor: 'pointer' }} onClick={() => setLeftMenu("Overview")}>
           <h2>Fitness</h2>
           <FitnessCenterIcon style={{ color: "#fb7316", fontSize: "1.9em" }} />
         </div>

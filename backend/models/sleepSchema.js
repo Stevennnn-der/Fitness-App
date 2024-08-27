@@ -6,6 +6,4 @@ const sleepSchema = new mongoose.Schema({
     sleepEndTime: String,
 });
 
-// const WorkoutTable = mongoose.model('WorkoutTable', workoutSchema);
-
 module.exports = sleepSchema;

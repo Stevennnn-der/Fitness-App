@@ -1,11 +1,16 @@
+.overview {
+  width: 100%;
+  display: flex;
+}
+
 .info-page {
   display: grid;
   grid-template-rows: 1fr 1fr 2fr;
   grid-template-columns: 1fr 1fr 1fr;
   height: 85vh;
   width: 70%;
-  gap: 20px;
-  padding: 20px 40px;
+  gap: 1em;
+  padding: 1em 2em;
   padding-bottom: 0;
 }
 
@@ -19,4 +24,9 @@
 
 .goal-process {
   grid-column: span 3;
+}
+
+.overview .schedule-page {
+  margin-top: 1em;
+  width: 28%;
 }

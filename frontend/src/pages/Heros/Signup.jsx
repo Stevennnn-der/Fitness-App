@@ -10,6 +10,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   async function onSubmitHandler(e) {
+    
     e.preventDefault();
     const validationErrors = {};
     if (!username.trim()) validationErrors.username = "Username is required!";
@@ -30,6 +31,7 @@ const Signup = () => {
     if (email.trim() && /\S+@\S+\.\S+/.test(email)) {
       const apiUrl = "http://localhost:5001/signup";
       try {
+       
         const response = await fetch(apiUrl, {
           method: "POST",
           headers: {
@@ -48,9 +50,8 @@ const Signup = () => {
         }
         navigate("/login");
         
-
-        
       } catch (err) {
+        console.log(err);
         console.log("Error: " + err.message);
       }
     }

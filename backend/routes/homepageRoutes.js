@@ -5,6 +5,7 @@ const {
   uploadAvatar,
   updateUser,
   createWorkoutTable,
+  generateAIText,
 } = require("../controllers/homepageControllers");
 const validateToken = require("../middleware/validTokenHandler");
 
@@ -21,6 +22,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/", validateToken, currentUser);
+
+router.post("/suggestion", generateAIText)
 
 router.put("/user", updateUser);
 

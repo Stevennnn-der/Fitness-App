@@ -1,13 +1,23 @@
 import React from "react";
-import './SuggestionCard.css'
+import "./SuggestionCard.css";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
 
-const Suggestion = () => {
+const SuggestionCard = () => {
   return (
-      <div className="container">
-        {/* <p>Suggestion</p> */}
+    <div className="suggestionCard">
+      <div className="suggestion-container">
+        <div className="suggestion-icon">
+          <i
+            class="fa-solid fa-robot"
+            style={{ color: "#E4EAF3", fontSize: "2.5rem" }}
+          />
+        </div>
+        <div className="suggestion-p">
+          <p>Ask AI For Suggestions!</p>
+        </div>
       </div>
-    
+    </div>
   );
 };
 
-export default Suggestion;
+export default SuggestionCard;

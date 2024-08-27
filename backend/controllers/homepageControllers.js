@@ -1,8 +1,8 @@
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const currentUser = asyncHandler(async (req, res) => {
-  // console.log("ID ", req.user._id);
   const user = await User.findById(req.user._id);
   if (user) {
     res.json(user);
@@ -84,7 +84,6 @@ const updateUser = asyncHandler(async (req, res) => {
 });
 
 const uploadAvatar = asyncHandler(async (req, res) => {
-  console.log(req.file);
   try {
     const userId = req.body.user_id;
     const file = req.file;
@@ -108,4 +107,21 @@ const uploadAvatar = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { updateUser, currentUser, uploadAvatar, createWorkoutTable };
+const generateAIText = asyncHandler(async (req, res) => {
+  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const { prompt } = req.body;
+  
+  const result = await model.generateContent(prompt);
+  const text = result.response.text()
+  console.log(text);
+  return res.status(200).json({ text })
+});
+
+module.exports = {
+  updateUser,
+  currentUser,
+  uploadAvatar,
+  createWorkoutTable,
+  generateAIText,
+};

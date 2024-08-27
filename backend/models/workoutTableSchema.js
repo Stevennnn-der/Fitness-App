@@ -11,6 +11,4 @@ const workoutSchema = new mongoose.Schema({
     }]
 });
 
-// const WorkoutTable = mongoose.model('WorkoutTable', workoutSchema);
-
 module.exports = workoutSchema;

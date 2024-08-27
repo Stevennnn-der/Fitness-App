@@ -1,0 +1,10 @@
+.typewriter {
+  max-width: 35rem; /* Set the max width as desired */
+  white-space: pre-wrap; /* Allows text to wrap onto the next line */
+  word-wrap: break-word; /* Breaks long words and wraps them onto the next line */
+  overflow-wrap: break-word; /* Ensures the text wraps correctly in all scenarios */
+}
+
+.typewriter > p {
+  font-size: 1rem;
+}

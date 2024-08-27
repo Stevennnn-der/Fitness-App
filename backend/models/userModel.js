@@ -26,27 +26,32 @@ const userSchema = mongoose.Schema({
 
   firstName: {
     type: String,
-    required: [true, "Please Add the First Name"],
+    // required: [true, "Please Add the First Name"],
+    required: false,
   },
 
   lastName: {
     type: String,
-    required: [true, "Please Add the Last Name"],
+    // required: [true, "Please Add the Last Name"],
+    required: false,
   },
 
   phoneNumber: {
     type: String,
-    required: [true, "Please Add the Phone Number"],
+    // required: [true, "Please Add the Phone Number"],
+    required: false,
   },
 
   address: {
     type: String,
-    required: [true, "Please Add the Address"],
+    // required: [true, "Please Add the Address"],
+    required: false,
   },
 
   gender: {
     type: String,
-    required: [true, "Please Add the Gender"],
+    // required: [true, "Please Add the Gender"],
+    required: false,
   },
 
   dataTables: [workoutSchema],

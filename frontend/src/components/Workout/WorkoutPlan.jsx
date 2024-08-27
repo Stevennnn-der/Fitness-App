@@ -52,7 +52,7 @@ const WorkoutPlan = () => {
       try {
         const token = localStorage.getItem("accessToken");
         if (token) {
-          const response = await axios.get("http://localhost:5001/homepage", {
+          const response = await axios.get("https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -97,7 +97,7 @@ const WorkoutPlan = () => {
   
     try {
       const response = await fetch(
-        `http://localhost:5001/homepage/workout/${date}`,
+        `https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage/workout/${date}`,
         {
           method: "POST",
           headers: {

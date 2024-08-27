@@ -17,7 +17,7 @@ const DailyCheckInCard = () => {
       <div className="DailyCheckInCardBody">
         <h2>Check In:</h2>
         <div>
-          <p id='first-msg'>CONGRADULATION!</p>
+          <p id='first-msg'>CONGRATULATION!</p>
           <p id='second-msg'>You have checked in for {checkedDays} days!</p>
         </div>
       </div>

@@ -40,7 +40,7 @@ const WeightScale = ({
     setHasSaved(true);
     
     try {
-      const response = await fetch("http://localhost:5001/health/weight", {
+      const response = await fetch("https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/health/weight", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

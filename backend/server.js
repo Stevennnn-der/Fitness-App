@@ -2,9 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const db = require("./config/db")
-const errorHandler = require("./middleware/errorhandler");
+const errorHandler = require("./middleware/errorHandler");
+const functions = require('firebase-functions')
 
-const port = process.env.PORT || 5001;
+const port = 5001;
 const app = express();
 
 dotenv.config();
@@ -22,6 +23,9 @@ app.use(express.static('assets'));
 
 app.use(errorHandler);
 
-app.listen(port, () => {
-  console.log(`Server runnning on port ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server runnning on port ${port}`);
+// });
+
+
+exports.api = functions.https.onRequest(app)

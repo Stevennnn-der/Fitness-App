@@ -24,7 +24,7 @@ const ImageUpload = ({ user_id, user_avatar}) => {
       formData.append("file", uploadFile);
       formData.append("user_id", user_id);
       console.log(uploadFile);
-      const response = await fetch ("http://localhost:5001/homepage/user", {
+      const response = await fetch ("https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage/user", {
         method: "POST",
         body: formData
       });
@@ -42,7 +42,7 @@ const ImageUpload = ({ user_id, user_avatar}) => {
 
   return (
     <div className="image-icon">
-      <img src={`http://localhost:5001`+avatarURL} alt="Avatar" className="avatar"  />
+      <img src={`https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/`+avatarURL} alt="Avatar" className="avatar"  />
       <form id="form" encType="multipart/form-data">
         <i className="fa-solid fa-camera" onClick={handleImageUpload} />
         <input type="file" id="file" ref={fileUploadRef} draggable="false" onChange={uploadImageDisplay} hidden />

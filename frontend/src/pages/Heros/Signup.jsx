@@ -29,7 +29,7 @@ const Signup = () => {
     setErrors({...validationErrors});
 
     if (email.trim() && /\S+@\S+\.\S+/.test(email)) {
-      const apiUrl = "http://localhost:5001/signup";
+      const apiUrl = "https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/signup";
       try {
        
         const response = await fetch(apiUrl, {

@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const asyncHandler = require("express-async-handler");
 const { GoogleGenerativeAI } = require('@google/generative-ai');
+const functions = require("firebase-functions");
 
 const currentUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
@@ -108,7 +109,7 @@ const uploadAvatar = asyncHandler(async (req, res) => {
 });
 
 const generateAIText = asyncHandler(async (req, res) => {
-  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+  const genAI = new GoogleGenerativeAI(functions.config().app.API_KEY);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const { prompt } = req.body;
   

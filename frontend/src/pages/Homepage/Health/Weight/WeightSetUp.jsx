@@ -83,7 +83,7 @@ const WeightSetUp = ({ setNeedSetUp }) => {
       const token = localStorage.getItem("accessToken");
       if (token) {
         const response = await fetch(
-          "http://localhost:5001/health/weight/goal",
+          "https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/health/weight/goal",
           {
             method: "POST",
             headers: {
@@ -105,7 +105,7 @@ const WeightSetUp = ({ setNeedSetUp }) => {
       try {
         const token = localStorage.getItem("accessToken");
         if (token) {
-          const response = await axios.get("http://localhost:5001/homepage", {
+          const response = await axios.get("https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

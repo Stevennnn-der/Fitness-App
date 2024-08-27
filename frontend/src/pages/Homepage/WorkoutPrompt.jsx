@@ -13,7 +13,7 @@ export const WorkoutPrompt = () => {
       try {
         const token = localStorage.getItem("accessToken");
         if (token) {
-          const response = await axios.get("http://localhost:5001/homepage", {
+          const response = await axios.get("https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage", {
             headers: {
               Authorization: `Bearer ${token}`,
             },

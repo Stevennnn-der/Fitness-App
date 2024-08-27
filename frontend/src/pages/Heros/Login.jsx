@@ -24,7 +24,7 @@ const Login = () => {
     }
     setErrors({ ...validationErrors });
 
-    const apiUrl = "http://localhost:5001/login";
+    const apiUrl = "https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/login";
     try {
       const response = await fetch(apiUrl, {
         method: "POST",

@@ -14,7 +14,7 @@ const Suggestion = () => {
     // Example logic for adding input to messages
     console.log("iiiii");
     const prompt = "Make it short and concise: \n" + input;
-    const response = await fetch(`http://localhost:5001/homepage/suggestion`, {
+    const response = await fetch(`https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage/suggestion`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

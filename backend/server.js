@@ -10,11 +10,12 @@ const app = express();
 
 dotenv.config();
 app.use(cors({
-  origin: 'http://localhost:3000' 
+  origin: 'https://main--fitnessder.netlify.app' 
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 db();
+
 
 app.use("/", require("./routes/userRoutes"));
 app.use("/homepage", require("./routes/homepageRoutes"));

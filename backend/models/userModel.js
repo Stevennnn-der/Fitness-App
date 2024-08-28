@@ -6,7 +6,7 @@ const sleepSchema = require("./sleepSchema");
 const userSchema = mongoose.Schema({
   avatar: {
     type: String,
-    default: "/static/media/default-avatar-image.b0cd019b50700d3cbaa3.jpeg",
+    default: "/default-avatar-image.jpeg",
   },
 
   email: {

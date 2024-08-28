@@ -109,7 +109,9 @@ const uploadAvatar = asyncHandler(async (req, res) => {
 });
 
 const generateAIText = asyncHandler(async (req, res) => {
-  const genAI = new GoogleGenerativeAI(functions.config().app.API_KEY);
+  console.log("hiiii");
+  console.log(functions.config().app.api_key);
+  const genAI = new GoogleGenerativeAI(functions.config().app.api_key);
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
   const { prompt } = req.body;
   

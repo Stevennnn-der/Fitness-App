@@ -9,9 +9,27 @@ const port = 5001;
 const app = express();
 
 dotenv.config();
+
+const allowedOrigins = [
+  'https://main--fitnessder.netlify.app',
+  'https://fitnessder.netlify.app'
+];
+
+// Configure CORS
 app.use(cors({
-  origin: 'https://main--fitnessder.netlify.app' 
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      callback(null, true);
+    } else {
+      // Reject the request
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 db();

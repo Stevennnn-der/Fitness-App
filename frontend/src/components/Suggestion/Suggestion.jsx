@@ -12,7 +12,7 @@ const Suggestion = () => {
 
   const handleButtonClick = async () => {
     // Example logic for adding input to messages
-    console.log("iiiii");
+    
     const prompt = "Make it short and concise: \n" + input;
     const response = await fetch(`https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage/suggestion`, {
       method: "POST",
@@ -23,6 +23,7 @@ const Suggestion = () => {
         prompt,
       }),
     });
+    console.log("hereeee");
     const data = await response.json();
     const text = data.text;
     setAIText(text);

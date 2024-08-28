@@ -26,8 +26,14 @@ const ImageUpload = ({ user_id, user_avatar}) => {
       console.log(uploadFile);
       const response = await fetch ("https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/homepage/user", {
         method: "POST",
-        body: formData
+        body: formData,
+        credentials: 'include',
       });
+      
+      if (!response.ok) {
+        console.error(`Server responded with status ${response.status}: ${response.statusText}`);
+        throw new Error(`Failed to upload image: ${response.statusText}`);
+      }
 
       const data = await response.json();
       setAvatarURL(data?.location);

@@ -88,7 +88,7 @@ const User = () => {
     }
   };
 
-  console.log("firstName: " + firstName)
+  // console.log("firstName: " + firstName)
   return (
     <div className="userpage">
       <div className="user-navbar">

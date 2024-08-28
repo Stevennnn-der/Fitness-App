@@ -29,7 +29,7 @@ const ImageUpload = ({ user_id, user_avatar}) => {
         body: formData,
         credentials: 'include',
       });
-      
+
       if (!response.ok) {
         console.error(`Server responded with status ${response.status}: ${response.statusText}`);
         throw new Error(`Failed to upload image: ${response.statusText}`);
@@ -48,7 +48,7 @@ const ImageUpload = ({ user_id, user_avatar}) => {
 
   return (
     <div className="image-icon">
-      <img src={`https://us-central1-fitness-app-abbcb.cloudfunctions.net/api/`+avatarURL} alt="Avatar" className="avatar"  />
+      <img src={`https://us-central1-fitness-app-abbcb.cloudfunctions.net/api`+avatarURL} alt="Avatar" className="avatar"  />
       <form id="form" encType="multipart/form-data">
         <i className="fa-solid fa-camera" onClick={handleImageUpload} />
         <input type="file" id="file" ref={fileUploadRef} draggable="false" onChange={uploadImageDisplay} hidden />
